@@ -13,7 +13,7 @@ import math
 # CONFIG
 # -----------------------------
 
-TOKEN = "MTQyMjI2MTM4ODA4ODMxNTk5NA.GUjBP1.C9ORt0CCrnf7HEEmxYDq7JkEAhrxKQGOKi9osg"
+TOKEN = "DISCORD_DEVELOPER_TOKEN"
 SERVERLIST_URL = "https://cdn2.arkdedicated.com/servers/asa/officialserverlist.json"
 GUILD_TOKEN = "GUILD_ID"
 STEAM_API_KEY = "API_KEY"
@@ -1167,5 +1167,6 @@ async def dashboard_updater():
 # -----------------------------
 # RUN
 # -----------------------------
+
 
 bot.run(TOKEN)
