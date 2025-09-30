@@ -1,0 +1,91 @@
+{
+  "rex": {
+    "base_torpor": 1550,
+    "torpor_per_level": 93,
+    "food_drain": 0.1,
+    "taming_affinity_per_level": 85,
+    "base_affinity": 1200,
+    "foods": {
+      "extraordinary_kibble": { "food_value": 80, "affinity": 400 },
+      "raw_mutton": { "food_value": 50, "affinity": 150 },
+      "raw_prime_meat": { "food_value": 40, "affinity": 100 },
+      "raw_meat": { "food_value": 50, "affinity": 40 }
+    },
+    "weapons": {
+      "tranq_arrow": 90,
+      "tranq_dart": 221,
+      "shocking_tranq_dart": 396
+    }
+  },
+  "brontosaurus": {
+    "base_torpor": 800,
+    "torpor_per_level": 48,
+    "food_drain": 0.1,
+    "taming_affinity_per_level": 70,
+    "base_affinity": 1500,
+    "foods": {
+      "extraordinary_kibble": { "food_value": 80, "affinity": 400 },
+      "raw_mutton": { "food_value": 50, "affinity": 150 },
+      "raw_prime_meat": { "food_value": 40, "affinity": 100 },
+      "raw_meat": { "food_value": 50, "affinity": 40 }
+    },
+    "weapons": {
+      "tranq_arrow": 75,
+      "tranq_dart": 200,
+      "shocking_tranq_dart": 350
+    }
+  },
+  "argentavis": {
+    "base_torpor": 800,
+    "torpor_per_level": 48,
+    "food_drain": 0.1,
+    "taming_affinity_per_level": 50,
+    "base_affinity": 1000,
+    "foods": {
+      "extraordinary_kibble": { "food_value": 80, "affinity": 400 },
+      "raw_mutton": { "food_value": 50, "affinity": 150 },
+      "raw_prime_meat": { "food_value": 40, "affinity": 100 },
+      "raw_meat": { "food_value": 50, "affinity": 40 }
+    },
+    "weapons": {
+      "tranq_arrow": 70,
+      "tranq_dart": 180,
+      "shocking_tranq_dart": 350
+    }
+  },
+  "spinosaurus": {
+    "base_torpor": 1200,
+    "torpor_per_level": 72,
+    "food_drain": 0.1,
+    "taming_affinity_per_level": 80,
+    "base_affinity": 1300,
+    "foods": {
+      "extraordinary_kibble": { "food_value": 80, "affinity": 400 },
+      "raw_mutton": { "food_value": 50, "affinity": 150 },
+      "raw_prime_meat": { "food_value": 40, "affinity": 100 },
+      "raw_meat": { "food_value": 50, "affinity": 40 }
+    },
+    "weapons": {
+      "tranq_arrow": 85,
+      "tranq_dart": 200,
+      "shocking_tranq_dart": 360
+    }
+  },
+  "triceratops": {
+    "base_torpor": 275,
+    "torpor_per_level": 16,
+    "food_drain": 0.1,
+    "taming_affinity_per_level": 30,
+    "base_affinity": 600,
+    "foods": {
+      "simple_kibble": { "food_value": 40, "affinity": 200 },
+      "mejoberry": { "food_value": 30, "affinity": 30 },
+      "raw_vegetables": { "food_value": 20, "affinity": 50 }
+    },
+    "weapons": {
+      "tranq_arrow": 35,
+      "tranq_dart": 80,
+      "shocking_tranq_dart": 150
+    }
+  }
+}
