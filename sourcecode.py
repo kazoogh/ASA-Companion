@@ -13,7 +13,7 @@ import math
 # CONFIG
 # -----------------------------
 
-TOKEN = "DISCORD_DEVELOPER_TOKEN"
+TOKEN = "MTQyMjI2MTM4ODA4ODMxNTk5NA.GUjBP1.C9ORt0CCrnf7HEEmxYDq7JkEAhrxKQGOKi9osg"
 SERVERLIST_URL = "https://cdn2.arkdedicated.com/servers/asa/officialserverlist.json"
 GUILD_TOKEN = "GUILD_ID"
 STEAM_API_KEY = "API_KEY"
@@ -30,6 +30,24 @@ dashboards = {}
 # Track who is currently online per server
 active_sessions = {}  
 # { server_id: { steam64: { "joined": datetime, "name": str } } }
+
+# -----------------------------
+# ITEM DATABASE
+# -----------------------------
+
+ITEMS_FILE = "items.json"
+
+def load_items():
+    if os.path.exists(ITEMS_FILE):
+        with open(ITEMS_FILE, "r") as f:
+            return json.load(f)
+    return {}
+
+def save_items():
+    with open(ITEMS_FILE, "w") as f:
+        json.dump(items, f, indent=2)
+
+items = load_items()
 
 # -----------------------------
 # DINO DATABASE
@@ -160,485 +178,6 @@ def get_recent_servers(player_id, limit=5):
     servers = player_db[player_id]["servers"]
     sorted_by_time = sorted(servers.items(), key=lambda x: x[1]["last_seen"], reverse=True)
     return sorted_by_time[:limit]
-
-ITEMS = {
-    # -----------------------------
-    # KIBBLES
-    # -----------------------------
-
-    "basic_kibble": {
-        "name": "Basic Kibble",
-        "ingredients": {
-            "Extra Small Egg": 1,
-            "Amarberry": 5,
-            "Mejoberry": 5,
-            "Tintoberry": 10,
-            "Cooked Meat": 1,
-            "Fiber": 25,
-            "Water": 1
-        },
-        "image": "https://ark.wiki.gg/images/thumb/c/c7/Basic_Kibble.png/64px-Basic_Kibble.png"
-    },
-    "simple_kibble": {
-        "name": "Simple Kibble",
-        "ingredients": {
-            "Small Egg": 1,
-            "Cooked Fish Meat": 1,
-            "Mejoberry": 5,
-            "Rockarrot": 2,
-            "Fiber": 1,
-            "Water": 1
-        },
-        "image": "https://ark.wiki.gg/images/thumb/f/f8/Simple_Kibble.png/64px-Simple_Kibble.png"
-    },
-    "regular_kibble": {
-        "name": "Regular Kibble",
-        "ingredients": {
-            "Medium Egg": 1,
-            "Cooked Meat Jerky": 1,
-            "Longrass": 2,
-            "Savoroot": 2,
-            "Fiber": 5,
-            "Water": 1
-        },
-        "image": "https://ark.wiki.gg/images/thumb/6/68/Regular_Kibble.png/64px-Regular_Kibble.png"
-    },
-    "superior_kibble": {
-        "name": "Superior Kibble",
-        "ingredients": {
-            "Large Egg": 1,
-            "Prime Meat Jerky": 1,
-            "Citronal": 2,
-            "Sap": 2,
-            "Cooked Meat": 1,
-            "Water": 1
-        },
-        "image": "https://ark.wiki.gg/images/thumb/6/6e/Superior_Kibble.png/64px-Superior_Kibble.png"
-    },
-    "exceptional_kibble": {
-        "name": "Exceptional Kibble",
-        "ingredients": {
-            "Extra Large Egg": 1,
-            "Focal Chili": 1,
-            "Mejoberry": 10,
-            "Rare Flower": 1,
-            "Rare Mushroom": 1,
-            "Prime Meat Jerky": 1,
-            "Water": 1
-        },
-        "image": "https://ark.wiki.gg/images/thumb/0/0d/Exceptional_Kibble.png/64px-Exceptional_Kibble.png"
-    },
-    "extraordinary_kibble": {
-        "name": "Extraordinary Kibble",
-        "ingredients": {
-            "Special Egg (Yutyrannus, etc.)": 1,
-            "Giant Bee Honey": 1,
-            "Mejoberry": 10,
-            "Lazarus Chowder": 1,
-            "Fiber": 1,
-            "Water": 1
-        },
-        "image": "https://ark.wiki.gg/images/thumb/0/0c/Extraordinary_Kibble.png/64px-Extraordinary_Kibble.png"
-    },
-
-    # -----------------------------
-    # SOUPS / BREWS / STEWS
-    # -----------------------------
-
-    "medbrew": {
-        "name": "Medical Brew",
-        "ingredients": {
-            "Tintoberry": 20,
-            "Narcotic": 2,
-            "Water": 1
-        },
-        "image": "https://ark.wiki.gg/images/thumb/8/88/Medical_Brew.png/64px-Medical_Brew.png"
-    },
-    "energybrew": {
-        "name": "Energy Brew",
-        "ingredients": {
-            "Azulberry": 20,
-            "Stimulant": 2,
-            "Water": 1
-        },
-        "image": "https://ark.wiki.gg/images/thumb/0/0e/Energy_Brew.png/64px-Energy_Brew.png"
-    },
-    "calien soup": {
-        "name": "Calien Soup",
-        "ingredients": {
-            "Citronal": 5,
-            "Tintoberry": 20,
-            "Azulberry": 20,
-            "Mejoberry": 10,
-            "Stimulant": 2,
-            "Water": 1
-        },
-        "image": "https://ark.wiki.gg/images/thumb/a/a4/Calien_Soup.png/64px-Calien_Soup.png"
-    },
-    "focal chili": {
-        "name": "Focal Chili",
-        "ingredients": {
-            "Cooked Meat": 9,
-            "Citronal": 5,
-            "Tintoberry": 20,
-            "Azulberry": 20,
-            "Mejoberry": 20,
-            "Water": 1
-        },
-        "image": "https://ark.wiki.gg/images/thumb/8/8b/Focal_Chili.png/64px-Focal_Chili.png"
-    },
-    "lazarus chowder": {
-        "name": "Lazarus Chowder",
-        "ingredients": {
-            "Cooked Meat": 9,
-            "Savoroot": 5,
-            "Longrass": 5,
-            "Mejoberry": 10,
-            "Narcotic": 2,
-            "Water": 1
-        },
-        "image": "https://ark.wiki.gg/images/thumb/0/01/Lazarus_Chowder.png/64px-Lazarus_Chowder.png"
-    },
-    "enduro stew": {
-        "name": "Enduro Stew",
-        "ingredients": {
-            "Cooked Meat": 9,
-            "Rockarrot": 5,
-            "Savoroot": 5,
-            "Mejoberry": 10,
-            "Water": 1
-        },
-        "image": "https://ark.wiki.gg/images/thumb/7/7f/Enduro_Stew.png/64px-Enduro_Stew.png"
-    },
-    "fria curry": {
-        "name": "Fria Curry",
-        "ingredients": {
-            "Rockarrot": 5,
-            "Longrass": 5,
-            "Mejoberry": 20,
-            "Narcotic": 2,
-            "Water": 1
-        },
-        "image": "https://ark.wiki.gg/images/thumb/4/4f/Fria_Curry.png/64px-Fria_Curry.png"
-    },
-    "shadow steak": {
-        "name": "Shadow Steak Saute",
-        "ingredients": {
-            "Prime Meat Jerky": 1,
-            "Rockarrot": 2,
-            "Savoroot": 2,
-            "Longrass": 2,
-            "Mejoberry": 20,
-            "Narcotic": 8,
-            "Water": 1
-        },
-        "image": "https://ark.wiki.gg/images/thumb/6/6e/Shadow_Steak_Saute.png/64px-Shadow_Steak_Saute.png"
-    },
-    "battle tartare": {
-        "name": "Battle Tartare",
-        "ingredients": {
-            "Cooked Prime Meat": 3,
-            "Savoroot": 2,
-            "Longrass": 2,
-            "Rare Flower": 1,
-            "Rare Mushroom": 1,
-            "Mejoberry": 20,
-            "Stimulant": 8,
-            "Water": 1
-        },
-        "image": "https://ark.wiki.gg/images/thumb/1/16/Battle_Tartare.png/64px-Battle_Tartare.png"
-    },
-    "mindwipe": {
-        "name": "Mindwipe Tonic",
-        "ingredients": {
-            "Cooked Prime Meat": 24,
-            "Mejoberry": 200,
-            "Narcotic": 72,
-            "Stimulant": 72,
-            "Rare Mushroom": 20,
-            "Rare Flower": 20,
-            "Water": 1
-        },
-        "image": "https://ark.wiki.gg/images/thumb/f/fa/Mindwipe_Tonic.png/64px-Mindwipe_Tonic.png"
-    },
-
-    # -----------------------------
-    # FOUNDATIONS
-    # -----------------------------
-
-    "thatch foundation": {
-        "name": "Thatch Foundation",
-        "ingredients": {
-            "Thatch": 20,
-            "Wood": 6,
-            "Fiber": 15
-        },
-        "image": "https://ark.wiki.gg/images/thumb/e/ed/Thatch_Foundation.png/64px-Thatch_Foundation.png"
-    },
-    "wooden foundation": {
-        "name": "Wooden Foundation",
-        "ingredients": {
-            "Wood": 80,
-            "Thatch": 20,
-            "Fiber": 15
-        },
-        "image": "https://ark.wiki.gg/images/thumb/d/d5/Wooden_Foundation.png/64px-Wooden_Foundation.png"
-    },
-    "stone foundation": {
-        "name": "Stone Foundation",
-        "ingredients": {
-            "Stone": 80,
-            "Wood": 40,
-            "Thatch": 30
-        },
-        "image": "https://ark.wiki.gg/images/thumb/7/73/Stone_Foundation.png/64px-Stone_Foundation.png"
-    },
-    "metal foundation": {
-        "name": "Metal Foundation",
-        "ingredients": {
-            "Metal Ingot": 50,
-            "Cementing Paste": 15
-        },
-        "image": "https://ark.wiki.gg/images/thumb/2/23/Metal_Foundation.png/64px-Metal_Foundation.png"
-    },
-    "tek foundation": {
-        "name": "Tek Foundation",
-        "ingredients": {
-            "Element": 1,
-            "Metal Ingot": 100,
-            "Crystal": 20,
-            "Polymer": 45
-        },
-        "image": "https://ark.wiki.gg/images/thumb/8/80/Tek_Foundation.png/64px-Tek_Foundation.png"
-    },
-
-    # -----------------------------
-    # WALLS
-    # -----------------------------
-
-    "thatch wall": {
-        "name": "Thatch Wall",
-        "ingredients": {
-            "Thatch": 10,
-            "Wood": 2,
-            "Fiber": 7
-        },
-        "image": "https://ark.wiki.gg/images/thumb/5/55/Thatch_Wall.png/64px-Thatch_Wall.png"
-    },
-    "wooden wall": {
-        "name": "Wooden Wall",
-        "ingredients": {
-            "Wood": 40,
-            "Thatch": 10,
-            "Fiber": 7
-        },
-        "image": "https://ark.wiki.gg/images/thumb/4/4f/Wooden_Wall.png/64px-Wooden_Wall.png"
-    },
-    "stone wall": {
-        "name": "Stone Wall",
-        "ingredients": {
-            "Stone": 40,
-            "Wood": 20,
-            "Thatch": 15
-        },
-        "image": "https://ark.wiki.gg/images/thumb/1/1e/Stone_Wall.png/64px-Stone_Wall.png"
-    },
-    "metal wall": {
-        "name": "Metal Wall",
-        "ingredients": {
-            "Metal Ingot": 25,
-            "Cementing Paste": 7
-        },
-        "image": "https://ark.wiki.gg/images/thumb/0/0d/Metal_Wall.png/64px-Metal_Wall.png"
-    },
-    "tek wall": {
-        "name": "Tek Wall",
-        "ingredients": {
-            "Element": 1,
-            "Metal Ingot": 35,
-            "Crystal": 15,
-            "Polymer": 20
-        },
-        "image": "https://ark.wiki.gg/images/thumb/1/1d/Tek_Wall.png/64px-Tek_Wall.png"
-    },
-
-    # -----------------------------
-    # DOORS
-    # -----------------------------
-
-    "thatch door": {
-        "name": "Thatch Door",
-        "ingredients": {
-            "Thatch": 10,
-            "Wood": 2,
-            "Fiber": 7
-        },
-        "image": "https://ark.wiki.gg/images/thumb/1/12/Thatch_Door.png/64px-Thatch_Door.png"
-    },
-    "wooden door": {
-        "name": "Wooden Door",
-        "ingredients": {
-            "Wood": 40,
-            "Thatch": 10,
-            "Fiber": 7
-        },
-        "image": "https://ark.wiki.gg/images/thumb/3/35/Wooden_Door.png/64px-Wooden_Door.png"
-    },
-    "stone door": {
-        "name": "Stone Door",
-        "ingredients": {
-            "Stone": 40,
-            "Wood": 20,
-            "Thatch": 15
-        },
-        "image": "https://ark.wiki.gg/images/thumb/8/88/Stone_Door.png/64px-Stone_Door.png"
-    },
-    "metal door": {
-        "name": "Metal Door",
-        "ingredients": {
-            "Metal Ingot": 25,
-            "Cementing Paste": 7
-        },
-        "image": "https://ark.wiki.gg/images/thumb/e/e4/Metal_Door.png/64px-Metal_Door.png"
-    },
-    "tek door": {
-        "name": "Tek Door",
-        "ingredients": {
-            "Element": 1,
-            "Metal Ingot": 35,
-            "Crystal": 15,
-            "Polymer": 20
-        },
-        "image": "https://ark.wiki.gg/images/thumb/d/d5/Tek_Door.png/64px-Tek_Door.png"
-    },
-
-    # -----------------------------
-    # CEILINGS
-    # -----------------------------
-
-    "thatch ceiling": {
-        "name": "Thatch Ceiling",
-        "ingredients": {
-            "Thatch": 10,
-            "Wood": 2,
-            "Fiber": 7
-        },
-        "image": "https://ark.wiki.gg/images/thumb/a/a3/Thatch_Ceiling.png/64px-Thatch_Ceiling.png"
-    },
-    "wooden ceiling": {
-        "name": "Wooden Ceiling",
-        "ingredients": {
-            "Wood": 40,
-            "Thatch": 10,
-            "Fiber": 7
-        },
-        "image": "https://ark.wiki.gg/images/thumb/3/39/Wooden_Ceiling.png/64px-Wooden_Ceiling.png"
-    },
-    "stone ceiling": {
-        "name": "Stone Ceiling",
-        "ingredients": {
-            "Stone": 40,
-            "Wood": 20,
-            "Thatch": 15
-        },
-        "image": "https://ark.wiki.gg/images/thumb/4/4f/Stone_Ceiling.png/64px-Stone_Ceiling.png"
-    },
-    "metal ceiling": {
-        "name": "Metal Ceiling",
-        "ingredients": {
-            "Metal Ingot": 35,
-            "Cementing Paste": 10
-        },
-        "image": "https://ark.wiki.gg/images/thumb/3/37/Metal_Ceiling.png/64px-Metal_Ceiling.png"
-    },
-    "tek ceiling": {
-        "name": "Tek Ceiling",
-        "ingredients": {
-            "Element": 1,
-            "Metal Ingot": 50,
-            "Crystal": 20,
-            "Polymer": 25
-        },
-        "image": "https://ark.wiki.gg/images/thumb/b/b0/Tek_Ceiling.png/64px-Tek_Ceiling.png"
-    },
-
-    # -----------------------------
-    # OTHERS
-    # -----------------------------
-
-    "tek gateway": {
-        "name": "Tek Gateway",
-        "ingredients": {
-            "Element": 2,
-            "Metal Ingot": 170,
-            "Crystal": 30,
-            "Polymer": 50
-        },
-        "image": "https://ark.wiki.gg/images/thumb/5/54/Tek_Gateway.png/64px-Tek_Gateway.png"
-    },
-    "metal gateway": {
-        "name": "Metal Gateway",
-        "ingredients": {
-            "Metal Ingot": 170,
-            "Cementing Paste": 50
-        },
-        "image": "https://ark.wiki.gg/images/thumb/2/2a/Metal_Gateway.png/64px-Metal_Gateway.png"
-    },
-    "dedi": {
-        "name": "Tek Dedicated Storage",
-        "ingredients": {
-            "Element": 3,
-            "Metal Ingot": 125,
-            "Crystal": 75,
-            "Polymer": 55,
-            "Black Pearls": 4
-        },
-        "image": "https://ark.wiki.gg/images/thumb/7/7c/Tek_Dedicated_Storage.png/64px-Tek_Dedicated_Storage.png"
-    },
-    "tek generator": {
-        "name": "Tek Generator",
-        "ingredients": {
-            "Element": 30,
-            "Metal Ingot": 2400,
-            "Crystal": 250,
-            "Polymer": 500,
-            "Black Pearls": 120
-        },
-        "image": "https://ark.wiki.gg/images/thumb/1/1a/Tek_Generator.png/64px-Tek_Generator.png"
-    },
-    "tek transmitter": {
-        "name": "Tek Transmitter",
-        "ingredients": {
-            "Element": 40,
-            "Metal Ingot": 2500,
-            "Crystal": 250,
-            "Polymer": 320,
-            "Black Pearls": 80
-        },
-        "image": "https://ark.wiki.gg/images/thumb/4/41/Tek_Transmitter.png/64px-Tek_Transmitter.png"
-    },
-    "tek turret": {
-        "name": "Tek Turret",
-        "ingredients": {
-            "Element": 3,
-            "Metal Ingot": 100,
-            "Electronics": 100,
-            "Polymer": 50,
-            "Cementing Paste": 50
-        },
-        "image": "https://ark.wiki.gg/images/thumb/d/d6/Tek_Turret.png/64px-Tek_Turret.png"
-    },
-    "heavy turret": {
-        "name": "Heavy Turret",
-        "ingredients": {
-            "Metal Ingot": 540,
-            "Electronics": 270,
-            "Polymer": 70,
-            "Cementing Paste": 200
-        },
-        "image": "https://ark.wiki.gg/images/thumb/e/e6/Heavy_Turret.png/64px-Heavy_Turret.png"
-    }
-}
 
 # -----------------------------
 # STEAM API HELPERS
@@ -1015,16 +554,15 @@ async def gentimers(interaction: discord.Interaction):
 
     await interaction.followup.send(embed=embed)
 
-
 @bot.tree.command(name="recipe", description="Show recipe details")
 @app_commands.describe(id="Item Name (e.g. focal chili, blue coloring, tek gateway)")
 async def recipe(interaction: discord.Interaction, id: str):
     sid = id.lower()
-    if sid not in ITEMS:
+    if sid not in items:
         await interaction.response.send_message(f"❌ Unknown recipe `{id}`", ephemeral=True)
         return
 
-    s = ITEMS[sid]
+    s = items[sid]
 
     lines = [f"- {res}: {qty}" for res, qty in s["ingredients"].items()]
     embed = discord.Embed(
@@ -1037,16 +575,15 @@ async def recipe(interaction: discord.Interaction, id: str):
 
     await interaction.response.send_message(embed=embed)
 
-
 @bot.tree.command(name="crafting", description="Calculate resources for structures and recipes")
 @app_commands.describe(name="Item ID (e.g. metal foundation, superior kibble, medbrew)", amount="How many to craft")
 async def crafting(interaction: discord.Interaction, name: str, amount: int):
     sid = name.lower()
-    if sid not in ITEMS:
+    if sid not in items:
         await interaction.response.send_message(f"❌ Unknown item `{name}`", ephemeral=True)
         return
 
-    s = ITEMS[sid]
+    s = items[sid]
     resources = {res: qty * amount for res, qty in s["ingredients"].items()}
 
     lines = [f"- {res}: {qty}" for res, qty in resources.items()]
@@ -1139,7 +676,6 @@ async def help_command(interaction: discord.Interaction):
 
     await interaction.response.send_message(embed=embed, ephemeral=True)
 
-
 # -----------------------------
 # TASK: Update dashboards
 # -----------------------------
@@ -1167,6 +703,5 @@ async def dashboard_updater():
 # -----------------------------
 # RUN
 # -----------------------------
-
 
 bot.run(TOKEN)
