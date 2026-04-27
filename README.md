@@ -110,3 +110,25 @@ Automatically saves data using JSON databases.
 
 ```bash
 pip install -U discord.py aiohttp
+```
+
+### 2️⃣ Configure Tokens
+
+```bash
+TOKEN = "YOUR_DISCORD_BOT_TOKEN"
+GUILD_TOKEN = "YOUR_GUILD_ID"
+STEAM_API_KEY = "YOUR_STEAM_API_KEY"
+```
+
+### 3️⃣ Run Bot
+
+```bash
+python bot.py
+
+```
+/addgen fuel:2 group:ice number:1
+/crafting name:"metal foundation" amount:25
+/dododex name:rex lvl:150
+/lookup server_id:1234
+/dashboard_place server_id:1234
+/lookupid steam64:76561198000000000
