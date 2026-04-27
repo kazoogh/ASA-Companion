@@ -1,130 +1,112 @@
-ASA Companion Bot
+<div align="center">
 
-A powerful Discord bot for ARK: Survival Ascended (ASA) players and tribes.
-Track official servers, manage generator timers, calculate crafting costs, lookup players, and use Dododex-style taming tools directly inside Discord.
+# 🦖 ASA Companion Bot
 
-Built with Python + discord.py
+### The Ultimate Discord Utility Bot for ARK: Survival Ascended
 
-🚀 Features
-⚡ Generator Timer Tracking
+Track servers • Manage generators • Craft smarter • Tame faster • Monitor players
 
-Keep track of your tribe generators and element fuel.
+<img src="https://img.shields.io/badge/python-3.10+-blue?style=for-the-badge&logo=python">
+<img src="https://img.shields.io/badge/discord.py-latest-5865F2?style=for-the-badge&logo=discord">
+<img src="https://img.shields.io/badge/status-active-success?style=for-the-badge">
 
-Commands:
+</div>
 
-/addgen → Add a single generator
-/addgens → Add multiple generators
-/removegen → Remove generator
-/cleargens → Clear all generators
-/fillgen → Refill one generator
-/fillgens → Refill multiple generators
-/gentimers → View all active generator timers
+---
 
-Example:
+## ✨ Features
 
-/addgen fuel:2 group:ice number:1
-🛠️ Crafting Calculator
+<table>
+<tr>
+<td width="50%">
 
-Calculate resources needed for structures, recipes, kibble, brews, etc.
+### ⚡ Generator Timers
+Track all tribe generators with automatic expiration times.
 
-Commands:
+**Commands**
+- `/addgen`
+- `/addgens`
+- `/fillgen`
+- `/fillgens`
+- `/removegen`
+- `/gentimers`
 
-/crafting
-/recipe
+</td>
+<td width="50%">
 
-Example:
+### 📊 Server Dashboard
+Live-updating ARK server dashboards inside Discord.
 
-/crafting name:"metal foundation" amount:20
-🦖 Dododex Style Taming Calculator
+**Commands**
+- `/lookup`
+- `/dashboard_place`
 
-View knockout shots + food required for taming creatures.
+Updates every **30 seconds**
 
-Command:
+</td>
+</tr>
 
-/dododex name:rex lvl:150
+<tr>
+<td width="50%">
 
-Shows:
+### 🛠️ Crafting Calculator
+Calculate exact resources for any item.
 
-Tranq arrows needed
-Tranq darts needed
-Food required
-Approximate tame time
-📊 Official Server Lookup
+**Commands**
+- `/crafting`
+- `/recipe`
 
-Pull server information directly from official ARK server list.
+</td>
+<td width="50%">
 
-Commands:
+### 🦖 Dododex Taming
+Knockout + food requirements instantly.
 
-/lookup
-/dashboard_place
+**Command**
+- `/dododex`
 
-Example:
+</td>
+</tr>
 
-/lookup server_id:1234
-👤 Steam Player Lookup
+<tr>
+<td width="50%">
 
-Track previously seen players and their server history.
+### 👤 Steam Player Lookup
+Track players, main servers, and visit history.
 
-Command:
+**Command**
+- `/lookupid`
 
-/lookupid steam64:76561198000000000
+</td>
+<td width="50%">
 
-Displays:
+### 💾 Persistent Storage
+Automatically saves data using JSON databases.
 
-Steam profile link
-Most visited servers
-Recent servers
-Main server
-📺 Live Dashboard System
+- players.json  
+- generators.json  
+- items.json  
+- dinosaurs.json
 
-Create live-updating server dashboards in Discord channels.
+</td>
+</tr>
+</table>
 
-Command:
+---
 
-/dashboard_place server_id:1234
+## 📸 Preview
 
-Updates every 30 seconds
+<div align="center">
 
-Shows:
+<img width="700" src="https://raw.githubusercontent.com/github/explore/main/topics/discord/discord.png">
 
-Server population
-Players tracked
-Last updated timestamp
-📦 Installation
-1. Clone Repository
-git clone https://github.com/yourusername/asa-companion-bot.git
-cd asa-companion-bot
-2. Install Dependencies
+</div>
+
+---
+
+## 🚀 Quick Setup
+
+### 1️⃣ Install Dependencies
+
+```bash
 pip install -U discord.py aiohttp
-3. Configure Bot
-
-Open the Python file and replace:
-
-TOKEN = "YOUR_DISCORD_BOT_TOKEN"
-GUILD_TOKEN = "YOUR_GUILD_ID"
-STEAM_API_KEY = "YOUR_STEAM_API_KEY"
-4. Run Bot
-python bot.py
-📁 Data Files
-
-The bot automatically stores persistent data in JSON files:
-
-players.json
-generators.json
-items.json
-dinosaurs.json
-🛠 Built With
-Python 3.10+
-discord.py
-aiohttp
-Steam Web API
-ARK Official Server API
-📌 Future Features
-EOS Player Tracking
-Tribe Logs
-Raid Alerts
-Discord Dashboard UI
-Market Prices
-Breeding Timers
-Crossplay Detection
-PvP Enemy Watchlists
