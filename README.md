@@ -126,6 +126,10 @@ STEAM_API_KEY = "YOUR_STEAM_API_KEY"
 python bot.py
 
 ```
+
+### 🧩 Example Commands
+
+```bash
 /addgen fuel:2 group:ice number:1
 /crafting name:"metal foundation" amount:25
 /dododex name:rex lvl:150
